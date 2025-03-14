@@ -38,7 +38,7 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function update(location) {
-    text.innerText = location[text];
+    text.innerText = location.text;
     button1.innerText = location["button text"][0];
     button2.innerText = location["button text"][1];
     button3.innerText = location["button text"][2];
