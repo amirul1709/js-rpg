@@ -97,6 +97,12 @@ const locations = [
         "button function": [restart, restart, restart],
         text: "You defeated the dragon! YOU WIN THE GAME!"
     },
+    {
+        name: "easter egg",
+        "button text": ["2", "8", "Go to town square"],
+        "button function": [pickTwo, pickEight, goTown],
+        text: "You find a secret game. Pick a number from above. Ten numbers will be randomly chosen between 0 and 10. If the number you chose matches the random number, you win!"
+    },
 ];
 
 // initialize buttons
@@ -204,7 +210,7 @@ function goFight() {
 }
 
 function attack() {
-    text.innerText = "The " + monsters[fighting].name + "attacks.";
+    text.innerText = "The " + monsters[fighting].name + " attacks.";
     text.innerText += " You attack it with your " + weapons[currentWeapon].name + ".";
 
     if (isMonsterHit()) {
@@ -271,4 +277,30 @@ function restart() {
     currentWeapon = 0;
     inventory = ["stick"];
     goTown();
+}
+
+function easterEgg() {
+    locations[7];
+}
+
+function pickTwo() {
+    pick(2);
+}
+
+function pickEight() {
+    pick(8);
+}
+
+function pick(guess) {
+    let numbers = [];
+
+    while (numbers.length < 10) {
+        numbers.push(Math.floor(Math.random() * 11));
+    }
+
+    text.innerText = "You picked " + guess + ". Here are the random numbers:\n";
+
+    for (let i = 0; i < 10; i++) {
+        text.innerText += numbers[i] + "\n"
+    }
 }
