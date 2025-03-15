@@ -1,3 +1,4 @@
+//initializing stats
 let xp = 0;
 let health = 100;
 let gold = 50;
@@ -6,6 +7,7 @@ let fighting;
 let monsterHealth;
 let inventory = ["stick"];
 
+// bringing elements over from html
 const button1 = document.querySelector("#button1");
 const button2 = document.querySelector("#button2");
 const button3 = document.querySelector("#button3");
@@ -17,6 +19,7 @@ const monsterStats = document.querySelector("#monsterStats");
 const monsterNameText = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
+// available weapons in store
 const weapons = [
     {
         name: "stick",
@@ -36,6 +39,7 @@ const weapons = [
     }
 ];
 
+// monsters in the game
 const monsters = [
     {
         name: "slime",
@@ -54,6 +58,7 @@ const monsters = [
     }
 ];
 
+// locations the player can be in
 const locations = [
     {
         name: "town square",
@@ -127,6 +132,7 @@ function goTown() {
     update(locations[0]);
 }
 
+// store logic
 function goStore() {
     update(locations[1]);
 }
@@ -182,6 +188,7 @@ function sellWeapon() {
 
 }
 
+// cave logic
 function goCave() {
     update(locations[2]);
 }
@@ -250,14 +257,6 @@ function dodge() {
     text.innerText = "You dodge the attack from " + monsters[fighting].name + ".";
 }
 
-function lose() {
-    update(locations[5]);
-}
-
-function winGame() {
-    update(locations[6]);
-}
-
 function defeatMonster() {
     gold += Math.floor(monsters[fighting].level * 6.7);
     xp += monsters[fighting].level;
@@ -267,18 +266,7 @@ function defeatMonster() {
     update(locations[4]);
 }
 
-function restart() {
-    xp = 0;
-    xpText.innerText = xp;
-    health = 100;
-    healthText.innerText = health;
-    gold = 50;
-    goldText.innerText = gold;
-    currentWeapon = 0;
-    inventory = ["stick"];
-    goTown();
-}
-
+// bonus guessing game hidden behind a return to town button
 function easterEgg() {
     update(locations[7]);
 }
@@ -317,5 +305,25 @@ function pick(guess) {
             lose();
         }
     }
+}
 
+//game over logic
+function lose() {
+    update(locations[5]);
+}
+
+function winGame() {
+    update(locations[6]);
+}
+
+function restart() {
+    xp = 0;
+    xpText.innerText = xp;
+    health = 100;
+    healthText.innerText = health;
+    gold = 50;
+    goldText.innerText = gold;
+    currentWeapon = 0;
+    inventory = ["stick"];
+    goTown();
 }
