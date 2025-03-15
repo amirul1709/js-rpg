@@ -78,7 +78,7 @@ const locations = [
         "button text": ["Attack", "Dodge", "Run"],
         "button function": [attack, dodge, goTown],
         text: "You are fighting a monster!"
-    }
+    },
     {
         name: "kill monster",
         "button text": ["Go to town square", "Go to town square", "Go to town square"],
@@ -208,7 +208,7 @@ function attack() {
     if (health <= 0) {
         lose();
     } else if (monsterHealth <= 0) {
-        defeatMonster();
+        fighting === 2 ? winGame() : defeatMonster();
     }
 
 }
@@ -218,7 +218,7 @@ function dodge() {
 }
 
 function lose() {
-
+    update(locations[5]);
 }
 
 function defeatMonster() {
@@ -228,4 +228,15 @@ function defeatMonster() {
     xpText.innerText = xp;
 
     update(locations[4]);
+}
+
+function restart() {
+    xp = 0;
+    health = 100;
+    gold = 50;
+    currentWeapon = 0;
+    fighting;
+    monsterHealth;
+    inventory = ["stick"];
+    goTown();
 }
