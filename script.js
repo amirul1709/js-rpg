@@ -14,7 +14,7 @@ const xpText = document.querySelector("#xpText");
 const healthText = document.querySelector("#healthText");
 const goldText = document.querySelector("#goldText");
 const monsterStats = document.querySelector("#monsterStats");
-const monsterName = document.querySelector("#monsterName");
+const monsterNameText = document.querySelector("#monsterName");
 const monsterHealthText = document.querySelector("#monsterHealth");
 
 const weapons = [
@@ -127,7 +127,7 @@ function buyWeapon() {
             let newWeapon = weapons[currentWeapon].name;
             text.innerText = "You now have a " + newWeapon + ".";
             inventory.push(newWeapon);
-            text.innerText += "In your inventory you have: " + inventory + ".";
+            text.innerText += " In your inventory you have: " + inventory + ".";
         } else {
             text.innerText = "You do not have enough gold to buy a weapon.";
         }
@@ -146,7 +146,7 @@ function sellWeapon() {
 
         let currentWeapon = inventory.shift();
         text.innerText = "You sold a " + currentWeapon + ".";
-        text.innerText += "In your inventory you have: " + inventory + ".";
+        text.innerText += " In your inventory you have: " + inventory + ".";
     } else {
         text.innerText = "Don't sell your only weapon!"
     }
@@ -172,5 +172,36 @@ function fightDragon() {
 }
 
 function goFight() {
+    update(locations[3]);
+    monsterHealth = monsters[fighting].health;
+    monsterStats.style.display = "block";
+    monsterNameText.innerText = monsters[fighting].name;
+    monsterHealthText.innerText = monsterHealth;
+}
+
+function attack() {
+    text.innerText = "The " + monsters[fighting].name + "attacks.";
+    text.innerText += " You attack it wiht your " + weapons[currentWeapon].name + ".";
+    health -= monsters[fighting].level;
+    monsterHealth -= weapons[currentWeapon].power + Math.floor(Math.random() * xp) + 1;
+    healthText.innerText = health;
+    monsterHealthText.innerText = monsterHealth;
+
+    if (health <= 0) {
+        lose();
+    } else if (monsterHealth <= 0) {
+        defeatMonster();
+    }
+}
+
+function dodge() {
+
+}
+
+function lose() {
+
+}
+
+function defeatMonster() {
 
 }
