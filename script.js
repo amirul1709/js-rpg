@@ -79,6 +79,18 @@ const locations = [
         "button function": [attack, dodge, goTown],
         text: "You are fighting a monster!"
     }
+    {
+        name: "kill monster",
+        "button text": ["Go to town square", "Go to town square", "Go to town square"],
+        "button function": [goTown, goTown, goTown],
+        text: "The monster screams, \"Arg!\", as it dies. You gain xp and find gold."
+    },
+    {
+        name: "lose",
+        "button text": ["REPLAY?", "REPLAY?", "REPLAY?"],
+        "button function": [restart, restart, restart],
+        text: "You died."
+    },
 ];
 
 // initialize buttons
@@ -87,6 +99,8 @@ button2.onclick = goCave;
 button3.onclick = fightDragon;
 
 function update(location) {
+    monsterStats.style.display = "none";
+
     text.innerText = location.text;
     button1.innerText = location["button text"][0];
     button2.innerText = location["button text"][1];
@@ -106,6 +120,7 @@ function goStore() {
 }
 
 function buyHealth() {
+
     if (gold >= 10) {
         gold -= 10;
         health += 10;
@@ -114,6 +129,7 @@ function buyHealth() {
     } else {
         text.innerText = "You do not have enough gold to buy health."
     }
+
 }
 
 function buyWeapon() {
@@ -140,6 +156,7 @@ function buyWeapon() {
 }
 
 function sellWeapon() {
+
     if (inventory.length > 1) {
         gold += 15;
         gold.innerText = gold;
@@ -150,6 +167,7 @@ function sellWeapon() {
     } else {
         text.innerText = "Don't sell your only weapon!"
     }
+
 }
 
 function goCave() {
@@ -192,6 +210,7 @@ function attack() {
     } else if (monsterHealth <= 0) {
         defeatMonster();
     }
+
 }
 
 function dodge() {
