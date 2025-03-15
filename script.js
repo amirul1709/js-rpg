@@ -36,6 +36,24 @@ const weapons = [
     }
 ];
 
+const monsters = [
+    {
+        name: "slime",
+        level: 2,
+        health: 15
+    },
+    {
+        name: "fanged beast",
+        level: 8,
+        health: 60
+    },
+    {
+        name: "dragon",
+        level: 20,
+        health: 300
+    }
+];
+
 const locations = [
     {
         name: "town square",
@@ -54,6 +72,12 @@ const locations = [
         "button text": ["Fight slime", "Fight fanged beast", "Go to town square"],
         "button function": [fightSlime, fightBeast, goTown],
         text: "You enter the cave. You see some monsters"
+    },
+    {
+        name: "fight",
+        "button text": ["Attack", "Dodge", "Run"],
+        "button function": [attack, dodge, goTown],
+        text: "You are fighting a monster!"
     }
 ];
 
@@ -99,6 +123,7 @@ function buyWeapon() {
             gold -= 30;
             currentWeapon += 1;
             goldText.innerText = gold;
+
             let newWeapon = weapons[currentWeapon].name;
             text.innerText = "You now have a " + newWeapon + ".";
             inventory.push(newWeapon);
@@ -114,18 +139,38 @@ function buyWeapon() {
 
 }
 
+function sellWeapon() {
+    if (inventory.length > 1) {
+        gold += 15;
+        gold.innerText = gold;
+
+        let currentWeapon = inventory.shift();
+        text.innerText = "You sold a " + currentWeapon + ".";
+        text.innerText += "In your inventory you have: " + inventory + ".";
+    } else {
+        text.innerText = "Don't sell your only weapon!"
+    }
+}
+
 function goCave() {
     update(locations[2]);
 }
 
 function fightSlime() {
-
+    fighting = 0;
+    goFight();
 }
 
 function fightBeast() {
-
+    fighting = 1;
+    goFight();
 }
 
 function fightDragon() {
-    console.log("Fighting dragon")
+    fighting = 2;
+    goFight();
+}
+
+function goFight() {
+
 }
