@@ -82,7 +82,7 @@ const locations = [
     {
         name: "kill monster",
         "button text": ["Go to town square", "Go to town square", "Go to town square"],
-        "button function": [goTown, goTown, goTown],
+        "button function": [goTown, goTown, easterEgg],
         text: "The monster screams, \"Arg!\", as it dies. You gain xp and find gold."
     },
     {
@@ -280,7 +280,7 @@ function restart() {
 }
 
 function easterEgg() {
-    locations[7];
+    update(locations[7]);
 }
 
 function pickTwo() {
